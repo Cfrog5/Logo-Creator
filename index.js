@@ -14,17 +14,23 @@ return inquirer
         {
             type: 'maxlength-input',
             message: 'What three characters would you like your logo to have?',
+            name: 'text',
+            maxLength: 3
+        },
+        {
+            type: 'input',
+            message: 'What color would you like the text to be?',
             name: 'textColor',
         },
         {
-            type: 'list'
-            message: 'Which shape would you like your logo to be?'
-            name 'shapeType',
+            type: 'input',
+            message: 'Which shape would you like your logo to be?',
+            name: 'shapeType',
             choices: ["circle", "square", "triangle"]
         },
         {
             type: 'input',
-            messasge: 'What color would you like the shape to be?'
+            messasge: 'What color would you like the shape to be?',
             name: 'shapeColor',
         },
     ])
@@ -34,10 +40,10 @@ return inquirer
         let shape;
         switch (shapeType) {
             case "circle":
-                shape= new Circle();
+                shape = new Circle();
                 break;
             case "square":
-                shape= new Square();
+                shape = new Square();
                 break;
                 default:
                     shape = new Triangle();
@@ -47,7 +53,7 @@ return inquirer
         const svg = new SVG();
         svg.setShape(shape);
         svg.setText(text, textColor);
-            return wwriteFile("logo.svg", svg.render());  
+            return writeFile("logo.svg", svg.render());  
 })
 .then(() => {
     console.log("Generated logo.svg");
